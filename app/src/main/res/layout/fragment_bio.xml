@@ -1,0 +1,57 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/hero_bg_gradient"
+    tools:context="com.example.den.herome.fragments.BioFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/firstAbilityh"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/hero_button"
+            android:clickable="false"
+            android:drawableLeft="@drawable/lightning"
+            android:drawableRight="@drawable/item_selected"
+            android:paddingLeft="5dp"
+            android:paddingRight="10dp"
+            android:text="Super Strength"
+            android:textColor="#FAC740" />
+
+        <Button
+            android:id="@+id/secondAbility"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/hero_button"
+            android:clickable="false"
+            android:drawableLeft="@drawable/lightning"
+            android:drawableRight="@drawable/item_selected"
+            android:paddingLeft="5dp"
+            android:paddingRight="10dp"
+            android:text="Super Strength"
+            android:textColor="#FAC740" />
+
+        <Button
+            android:id="@+id/chooseButton"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:textColor="#10161D"
+            android:text="Stat over"
+            android:textSize="22sp"
+            android:layout_marginTop="15dp"
+            android:layout_gravity="center"
+            android:background="@drawable/hero_solid_button"
+            android:backgroundTint="#FAC740"
+            android:paddingLeft="5dp"
+            android:paddingRight="10dp"/>
+    </LinearLayout>
+</FrameLayout>
