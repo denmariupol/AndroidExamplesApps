@@ -2,8 +2,11 @@ package com.example.imageapp.activities;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.LoaderManager;
+import android.content.Loader;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.provider.MediaStore;
@@ -14,11 +17,15 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.example.imageapp.R;
+import com.example.imageapp.adapters.ImagesAdapter;
 import com.example.imageapp.model.Image;
 
 import java.util.ArrayList;
@@ -27,7 +34,7 @@ import java.util.ArrayList;
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  */
-public class MediaActivity extends AppCompatActivity {
+public class MediaActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Bitmap>{
     /**
      * Whether or not the system UI should be auto-hidden after
      * {@link #AUTO_HIDE_DELAY_MILLIS} milliseconds.
@@ -99,6 +106,7 @@ public class MediaActivity extends AppCompatActivity {
     };
 
     final int PERMISSION_READ_EXTERNAL = 111;
+    private ImageView selectedimage;
     private ArrayList<Image> images = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,6 +132,18 @@ public class MediaActivity extends AppCompatActivity {
         }else{
             retrieveAndSetImages();
         }
+
+        selectedimage = (ImageView)findViewById(R.id.selected_image);
+
+        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.content_images);
+        ImagesAdapter adapter = new ImagesAdapter(images,selectedimage,this);
+        recyclerView.setAdapter(adapter);
+
+        GridLayoutManager manager = new GridLayoutManager(this,4);
+        manager.setOrientation(GridLayoutManager.VERTICAL);
+
+        recyclerView.setLayoutManager(manager);
+
         // Upon interacting with UI controls, delay any scheduled hide()
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
@@ -164,7 +184,7 @@ public class MediaActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        
+
                     }
                 });
             }
@@ -222,5 +242,21 @@ public class MediaActivity extends AppCompatActivity {
     private void delayedHide(int delayMillis) {
         mHideHandler.removeCallbacks(mHideRunnable);
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
+    }
+
+
+    @Override
+    public Loader<Bitmap> onCreateLoader(int id, Bundle args) {
+        return null;
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Bitmap> loader, Bitmap data) {
+
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Bitmap> loader) {
+
     }
 }

@@ -12,4 +12,8 @@ public class Image {
     public Image(Uri imageResourceUrl) {
         this.imageResourceUrl = imageResourceUrl;
     }
+
+    public Uri getImageResourceUrl() {
+        return imageResourceUrl;
+    }
 }
